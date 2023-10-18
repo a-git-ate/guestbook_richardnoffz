@@ -56,7 +56,16 @@ class GuestbookController {
 		Assert.notNull(guestbook, "Guestbook must not be null!");
 		this.guestbook = guestbook;
 	}
-
+	@PostMapping(path = "/like")
+	public String likeEntry(Long entryId){
+		Optional<GuestbookEntry> optionalEntry = this.guestbook.findById(entryId);
+		if (optionalEntry.isPresent()){
+			GuestbookEntry entry = optionalEntry.get();
+			entry.incrementLikes();
+			guestbook.save(entry);
+		}
+		return "redirect:/";
+	}
 	/**
 	 * Handles requests to the application root URI. Note, that you can use {@code redirect:} as prefix to trigger a
 	 * browser redirect instead of simply rendering a view.

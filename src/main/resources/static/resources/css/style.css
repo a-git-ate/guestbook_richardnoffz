@@ -2,6 +2,18 @@ div#entries, #form {
 	margin: auto;
 	width: 50%;
 }
+.regenbogen-hintergrund {
+	background-color: red;
+	width: 20rem; /* oder eine andere gewünschte Breite */
+	height: 5rem; /* oder eine andere gewünschte Höhe */
+	color: white;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-left: auto;
+	margin-right: auto;
+
+}
 
 .card {
 	margin-bottom: 2em;

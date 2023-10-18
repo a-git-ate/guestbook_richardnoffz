@@ -21,6 +21,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 
+import jakarta.transaction.Transactional;
 import org.springframework.util.Assert;
 
 /**
@@ -36,6 +37,7 @@ class GuestbookEntry {
 	private @Id @GeneratedValue Long id;
 	private final String name, text;
 	private final LocalDateTime date;
+	private int likes;
 
 	/**
 	 * Creates a new {@link GuestbookEntry} for the given name and text.
@@ -51,6 +53,7 @@ class GuestbookEntry {
 		this.name = name;
 		this.text = text;
 		this.date = LocalDateTime.now();
+		this.likes = 0;
 	}
 
 	@SuppressWarnings("unused")
@@ -58,6 +61,7 @@ class GuestbookEntry {
 		this.name = null;
 		this.text = null;
 		this.date = null;
+		this.likes = 0;
 	}
 
 	public String getName() {
@@ -75,4 +79,11 @@ class GuestbookEntry {
 	public String getText() {
 		return text;
 	}
+
+	public String getLikesStr() {return Integer.toString(likes);}
+
+	@Transactional
+	public void incrementLikes(){
+		this.likes = this.likes + 1;
+		System.out.println(this.likes);};
 }
